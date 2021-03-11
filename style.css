@@ -1,0 +1,29 @@
+.child1 {
+    order: 3;
+    width: 500px;
+    height: 200px;
+    background-color: #a8dadc;
+}
+
+.child2 {
+    order: 1;
+    width: 500px;
+    height: 200px;
+    background-color: #457b9d;
+}
+
+.child3 {
+    order: 2;
+    width: 500px;
+    height: 200px;
+    background-color: #1d3557;
+}
+
+.parent {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
