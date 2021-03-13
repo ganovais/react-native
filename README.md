@@ -1,23 +1,16 @@
 # Aula 1
 
-### Introdução JavaScript  
+### Introdução Typescript  
 
-## Download Github  
-    - https://git-scm.com/downloads  
+### Download NodeJs  
+    - https://nodejs.org/en/download/
 
-## Comandos GitHub  
-    ### Download do repositória para máquina local  
-    - git clone link_do_respositorio(https)  
+### Instalando Yarn
+    - npm install -g yarn
 
-    ### Adicionando projeto no servidor
-    - git add -A (Adiciona todos os arquivos alterados)  
-    - git commit -m "sua_mensagem" (mensagem das alterações, ajuda a identificar o que alterou)  
-    - git push (envia para o github)  
+### Instalando library typescript dentro do projeto  
+    - yarn add typescript -D
 
-    ### Criando nova branch  
-    - git checkout -b nome_nova_branch  
-
-    ### Alternando entre as branchs  
-    Por exemplo, estou na branch main e quero ir para aula1  
-    - git checkout aula1(nome da branch que deseja acessar)
-
+### Instalando ts-node-dev
+    - Funcionalidade  
+        - reload dentro do projeto ao salvar um arquivo 
