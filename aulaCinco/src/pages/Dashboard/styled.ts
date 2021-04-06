@@ -44,9 +44,32 @@ export const CategoryItemText = styled.Text`
   font-size: 16px;
 `;
 
-export const Filmes = styled.View``;
-export const FilmeTitle = styled.Text``;
-export const FilmeItem = styled.View``;
-export const FilmeImage = styled.Image``;
-export const FilmeItemText = styled.Text``;
-export const FilmeData = styled.Text``;
+export const Gadgets = styled.SafeAreaView`
+  background-color: #9a8c98;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  flex: 1;
+  align-items: center;
+  /* padding: 24px; */
+`;
+export const GadgetTitle = styled.Text`
+  font-size: 34px;
+  margin-top: 10px;
+  color: #edf2f4;
+`;
+export const GadgetItem = styled.View`
+  background-color: #22223b;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px #edf2f4;
+  width: 300px;
+  margin: 5px 0;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const GadgetItemText = styled.Text`
+  font-size: 16px;
+  color: #edf2f4;
+`;
+
+export const GadgetToggle = styled.Switch``;

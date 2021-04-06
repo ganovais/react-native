@@ -1,5 +1,7 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/core';
+import React, {useCallback, useState} from 'react';
 import {FlatList} from 'react-native';
+import Gadget from '../Gadget';
 import {
   Container,
   Header,
@@ -8,12 +10,11 @@ import {
   Categories,
   CategoryItem,
   CategoryItemText,
-  Filmes,
-  FilmeTitle,
-  FilmeItem,
-  FilmeImage,
-  FilmeItemText,
-  FilmeData,
+  Gadgets,
+  GadgetTitle,
+  GadgetItem,
+  GadgetItemText,
+  GadgetToggle,
 } from './styled';
 
 interface Category {
@@ -21,11 +22,10 @@ interface Category {
   title: string;
 }
 
-interface Filme {
+interface Gadget {
   id: number;
   title: string;
-  url: string;
-  data: Date;
+  status: boolean;
 }
 
 const categories: Category[] = [
@@ -51,10 +51,42 @@ const categories: Category[] = [
   },
 ];
 
-const filmes: Filme[] = [];
+const gadgets_db: Gadget[] = [
+  {
+    id: 1,
+    title: 'Sala',
+    status: false,
+  },
+  {
+    id: 2,
+    title: 'Cozinha',
+    status: true,
+  },
+  {
+    id: 3,
+    title: 'Quarto',
+    status: false,
+  },
+];
 
 const Dashboard: React.FC = () => {
   const profileImage = require('../../assets/vader.jpeg');
+  const [gadgets, setGadgets] = useState(gadgets_db);
+  const {navigate} = useNavigation();
+
+  const toggleSwitch = useCallback(
+    (id: number) => {
+      const index = gadgets.findIndex(gadget => gadget.id === id);
+      const gadget = {...gadgets[index]};
+      gadget.status = !gadget.status;
+      const gadgets_ = [...gadgets];
+
+      gadgets_[index] = gadget;
+
+      setGadgets(gadgets_);
+    },
+    [gadgets],
+  );
   return (
     <Container>
       <Header>
@@ -76,23 +108,29 @@ const Dashboard: React.FC = () => {
         />
       </Categories>
 
-      <Filmes>
-        <FilmeTitle>Filmes</FilmeTitle>
+      <Gadgets>
+        <GadgetTitle>Gadgets</GadgetTitle>
 
         <FlatList
-          data={filmes}
+          data={gadgets}
           renderItem={({item}) => (
-            <FilmeItem>
-              <FilmeImage source={{uri: item.url}} />
-              <FilmeItemText>{item.title}</FilmeItemText>
-              <FilmeData>{item.data}</FilmeData>
-            </FilmeItem>
+            <GadgetItem>
+              <GadgetItemText onPress={() => navigate('Gadget')}>
+                {item.title}
+              </GadgetItemText>
+              <GadgetToggle
+                trackColor={{false: '#767577', true: '#81b0ff'}}
+                thumbColor={item.status ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={() => toggleSwitch(item.id)}
+                value={item.status}
+              />
+            </GadgetItem>
           )}
           keyExtractor={item => item.title}
-          horizontal={true}
           showsHorizontalScrollIndicator={false}
         />
-      </Filmes>
+      </Gadgets>
     </Container>
   );
 };
