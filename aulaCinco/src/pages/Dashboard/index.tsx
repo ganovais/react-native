@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/core';
 import React, {useCallback, useState} from 'react';
 import {FlatList} from 'react-native';
 import Gadget from '../Gadget';
+import axios from 'axios';
 import {
   Container,
   Header,
@@ -73,6 +74,11 @@ const Dashboard: React.FC = () => {
   const profileImage = require('../../assets/vader.jpeg');
   const [gadgets, setGadgets] = useState(gadgets_db);
   const {navigate} = useNavigation();
+  const [ligado, setLigado] = useState(false);
+
+  const api = axios.create({
+    baseURL: 'http://192.168.0.132',
+  });
 
   const toggleSwitch = useCallback(
     (id: number) => {
@@ -84,8 +90,13 @@ const Dashboard: React.FC = () => {
       gadgets_[index] = gadget;
 
       setGadgets(gadgets_);
+
+      api.get(ligado ? 'L' : 'H').then(response => {
+        console.log(response);
+      });
+      setLigado(oldLigado => !oldLigado);
     },
-    [gadgets],
+    [gadgets, api, ligado],
   );
   return (
     <Container>
